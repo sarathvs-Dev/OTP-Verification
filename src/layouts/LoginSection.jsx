@@ -5,8 +5,8 @@ import home from "../assets/Group 4.png";
 import { toast, Toaster } from "react-hot-toast";
 import { CgSpinner } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-import { setConfirmationResult } from '../redux/authSlice';
+import { useDispatch, useSelector } from "react-redux";
+import { setConfirmationResult } from "../redux/authSlice";
 
 const LoginSection = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -16,10 +16,12 @@ const LoginSection = () => {
   const [showOtpInput, setShowOtpInput] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const confirmationResult = useSelector((state) => state.auth.confirmationResult);
+  const confirmationResult = useSelector(
+    (state) => state.auth.confirmationResult
+  );
 
   useEffect(() => {
-    // Clean up the RecaptchaVerifier instance when the component unmounts
+   
     return () => {
       if (window.recaptchaVerifier) {
         window.recaptchaVerifier.clear();
@@ -54,7 +56,7 @@ const LoginSection = () => {
     }
 
     setLoading(true);
-    setError(""); // Clear any previous errors
+    setError(""); 
     setUpRecaptcha();
 
     const appVerifier = window.recaptchaVerifier;
@@ -73,8 +75,6 @@ const LoginSection = () => {
       });
   };
 
-
-
   return (
     <div>
       <Toaster toastOptions={{ duration: 4000 }} />
@@ -88,24 +88,25 @@ const LoginSection = () => {
                   <p className="text-sm text-gray-500 tracking-wide leading-5">
                     Login to access your travelwise account
                   </p>
-                  <form
-                    className="space-y-6"
-                    onSubmit={handleSubmit}
-                  >
+                  <form className="space-y-6" onSubmit={handleSubmit}>
                     <div className="relative z-0 w-full mb-5 group">
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
+                      <label
+                        for="email"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        Phone Number
+                      </label>
                       <input
                         type="tel"
                         name="floating_phone"
                         id="floating_phone"
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder=" "
                         required
                         disabled={showOtpInput}
                       />
-                     
                     </div>
 
                     {showOtpInput && (
